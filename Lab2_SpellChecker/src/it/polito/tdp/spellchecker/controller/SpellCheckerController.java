@@ -21,7 +21,8 @@ public class SpellCheckerController {
 	private Dictionary d;
 	private ItalianDictionary italiano;
 	private EnglishDictionary inglese;
-	//private TextFlow txt;
+	List<Text> txt = new LinkedList<Text>();
+	
 
     @FXML
     private ResourceBundle resources;
@@ -49,9 +50,12 @@ public class SpellCheckerController {
     void doClearText(ActionEvent event) {
 
     	txtDaCorreggere.clear();
-    	txtCorretto.getChildren().removeAll();
-    	lblErrori.setText("");
+    	for(Text t:txt){
+    		txtCorretto.getChildren().removeAll(t);
+    	}
     	
+    	lblErrori.setText("");
+    	lblStato.setText("");
     }
     
     void setModel(ItalianDictionary d1, EnglishDictionary d2){
@@ -105,10 +109,10 @@ public class SpellCheckerController {
     			text1.setFill(Color.RED);
     			errori++;
     		}
-    	
+    		txt.add(text1);
     		txtCorretto.getChildren().add(text1);
     	}
-    	//txtCorretto.getChildren().add(txt);
+    	
     	
     	if(errori==1){
     		lblErrori.setText("C'è 1 errore");
@@ -130,7 +134,7 @@ public class SpellCheckerController {
         assert txtDaCorreggere != null : "fx:id=\"txtDaCorreggere\" was not injected: check your FXML file 'SpellChecker.fxml'.";
         assert txtCorretto != null : "fx:id=\"txtCorretto\" was not injected: check your FXML file 'SpellChecker.fxml'.";
         assert lblErrori != null : "fx:id=\"lblErrori\" was not injected: check your FXML file 'SpellChecker.fxml'.";
-        //assert txt != null : "fx:id=\"txt\" was not injected: check your FXML file 'SpellChecker.fxml'.";
+        
         
         txtDaCorreggere.setDisable(true);
         boxLingua.getItems().addAll("English","Italian");
