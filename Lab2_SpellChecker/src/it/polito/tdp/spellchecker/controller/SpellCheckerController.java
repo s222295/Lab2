@@ -22,7 +22,7 @@ public class SpellCheckerController {
 	private ItalianDictionary italiano;
 	private EnglishDictionary inglese;
 	List<Text> txt = new LinkedList<Text>();
-	
+	List<String> listaDaCorreggere= new LinkedList<String>();
 
     @FXML
     private ResourceBundle resources;
@@ -53,7 +53,8 @@ public class SpellCheckerController {
     	for(Text t:txt){
     		txtCorretto.getChildren().removeAll(t);
     	}
-    	
+    	txt.clear();
+    	listaDaCorreggere.clear();
     	lblErrori.setText("");
     	lblStato.setText("");
     }
@@ -84,14 +85,12 @@ public class SpellCheckerController {
     	}else{
     		d=italiano;
     	}
-    	
-    	
-    	List<String> listaDaCorreggere= new LinkedList<String>();
+
     	String s=txtDaCorreggere.getText();
     	StringTokenizer st = new StringTokenizer(s, " ");
 	    
     	while(st.hasMoreTokens()){
-	    	listaDaCorreggere.add(st.nextToken().trim());
+	    	listaDaCorreggere.add(st.nextToken().trim().toLowerCase());
 	    }
     	long l1=System.nanoTime();
     	List<RichWord> lista = d.spellCheckText(listaDaCorreggere);
@@ -112,7 +111,7 @@ public class SpellCheckerController {
     		txt.add(text1);
     		txtCorretto.getChildren().add(text1);
     	}
-    	
+    	lista.clear();
     	
     	if(errori==1){
     		lblErrori.setText("C'è 1 errore");
