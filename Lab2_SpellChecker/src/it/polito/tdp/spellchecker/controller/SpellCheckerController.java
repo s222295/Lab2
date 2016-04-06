@@ -2,7 +2,6 @@ package it.polito.tdp.spellchecker.controller;
 
 import java.net.URL;
 import java.util.*;
-import java.util.ResourceBundle;
 
 import it.polito.tdp.spellchecker.model.*;
 import it.polito.tdp.spellchecker.model.Dictionary;
@@ -22,7 +21,7 @@ public class SpellCheckerController {
 	private ItalianDictionary italiano;
 	private EnglishDictionary inglese;
 	List<Text> txt = new LinkedList<Text>();
-	List<String> listaDaCorreggere= new LinkedList<String>();
+	HashSet<String> listaDaCorreggere= new LinkedHashSet<String>();
 
     @FXML
     private ResourceBundle resources;

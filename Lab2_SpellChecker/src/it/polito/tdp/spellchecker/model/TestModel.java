@@ -13,7 +13,9 @@ public class TestModel {
 		d1.loadDictionary();
 		d2.loadDictionary();
 		
-		List<String> parole = new LinkedList<String>();
+		//List<String> parole = new LinkedList<String>();
+		
+		HashSet<String> parole = new LinkedHashSet<String>();
 		
 		parole.add("sole");
 		parole.add("yfgfgh");
@@ -27,7 +29,7 @@ public class TestModel {
 			System.out.println(r.toString());
 		}
 		
-		System.out.println("Tempo impiegato: "+(l2-l1));
+		System.out.println("Tempo impiegato: "+(l2-l1)/1000000.0);
 	}
 
 }

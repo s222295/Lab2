@@ -2,6 +2,8 @@ package it.polito.tdp.spellchecker.model;
 
 import java.io.*;
 
+import it.polito.tdp.spellchecker.db.DizionarioDAO;
+
 public class ItalianDictionary extends Dictionary {
 
 	
@@ -9,7 +11,7 @@ public class ItalianDictionary extends Dictionary {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
+/*
 	@Override
 	public void loadDictionary() {
 		try {
@@ -25,6 +27,9 @@ public class ItalianDictionary extends Dictionary {
 			System.out.println("Errore nella lettura del file");
 			}
 	}
-
-	
+*/
+	public void loadDictionary() {
+		DizionarioDAO dao = new DizionarioDAO();
+		dizionario.addAll(dao.loadDictionary());
+	}
 }
